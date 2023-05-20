@@ -1,22 +1,22 @@
-/* Kinan Haj Rashid
+/*
 * 4 / oktober / 2021
 * Betyg: E
 */
 #include "maze.h"
 
 int Maze::bringX() {
-    return myVec.size(); //retunerar stoleken på vektors längd
+    return myVec.size(); //retunerar stoleken pÃ¥ vektors lÃ¤ngd
 }
 
 int Maze::bringY() {
-    return myVec[0].size(); // retunerar storleken på vekros bredd
+    return myVec[0].size(); // retunerar storleken pÃ¥ vekros bredd
 }
 
 Maze::node::node(int x, int y) {// difinerar nods objekter
     this->x = x; 
     this->y = y;
     cell = 'X';
-    IsVisited = false; // för besökta noder DEFAULT
+    IsVisited = false; // fÃ¶r besÃ¶kta noder DEFAULT
 }
 
 Maze::Maze(int x, int y) { 
@@ -57,7 +57,7 @@ void Maze::add(int x, int y) {
 void Maze::Start() {
 
     int x = 0;
-    int y = rand() % (myVec[0].size() - 2); // range for y - vector size från början -2 (  )
+    int y = rand() % (myVec[0].size() - 2); // range for y - vector size frÃ¥n bÃ¶rjan -2 (  )
 
     while (y % 2 == 0) { 
         y = rand() % (myVec[0].size() - 2);
@@ -78,28 +78,28 @@ void Maze::End() {
     myVec[x][y].IsVisited = true;
 }
 
-std::vector<Maze::node> Maze::possible_neighbour(int x, int y) { // check för vilka möjliga grannar
+std::vector<Maze::node> Maze::possible_neighbour(int x, int y) { // check fÃ¶r vilka mÃ¶jliga grannar
 
     std::vector<node>neighbours2;
 
-    if ((Inside_the_maze(x - 2, y)) && !(myVec[x - 2][y].IsVisited )) { //uppåt
+    if ((Inside_the_maze(x - 2, y)) && !(myVec[x - 2][y].IsVisited )) { //uppÃ¥t
         neighbours2.push_back(myVec[x - 2][y]);
     }
-    if ((Inside_the_maze(x, y + 2) && !(myVec[x][y + 2].IsVisited ))) {//höger
+    if ((Inside_the_maze(x, y + 2) && !(myVec[x][y + 2].IsVisited ))) {//hÃ¶ger
         neighbours2.push_back(myVec[x][y + 2]);
 
     }
-    if ((Inside_the_maze(x + 2, y) && !(myVec[x + 2][y].IsVisited))) { //neråt
+    if ((Inside_the_maze(x + 2, y) && !(myVec[x + 2][y].IsVisited))) { //nerÃ¥t
         neighbours2.push_back(myVec[x + 2][y]);
     }
-    if ((Inside_the_maze(x, y - 2) && !(myVec[x][y - 2].IsVisited ))) { //vänsteråt
+    if ((Inside_the_maze(x, y - 2) && !(myVec[x][y - 2].IsVisited ))) { //vÃ¤nsterÃ¥t
         neighbours2.push_back(myVec[x][y - 2]);
     }
 
     return neighbours2;
 }
 
-Maze::node Maze::randomgranne(std::vector<node>const c) { // random möjlig granne 
+Maze::node Maze::randomgranne(std::vector<node>const c) { // random mÃ¶jlig granne 
 
     int i = rand() % c.size();
 
@@ -132,12 +132,12 @@ int Maze::randomY() {
 }
 
 
-bool Maze::Inside_the_maze(int x, int y) { // in the maze IsVisited för att inte nå väggarna från alla sidor
+bool Maze::Inside_the_maze(int x, int y) { // in the maze IsVisited fÃ¶r att inte nÃ¥ vÃ¤ggarna frÃ¥n alla sidor
 
     if (x <= 0 || y <= 0 || y >= myVec[0].size() || x >= myVec.size()) {
         return false;
     }
-    return true; // om ingen av ovan stämmer då finns noden
+    return true; // om ingen av ovan stÃ¤mmer dÃ¥ finns noden
 }
 
 void Maze::generate() { //DFS 
@@ -150,43 +150,43 @@ void Maze::generate() { //DFS
     int k = randomY(); // y kord
     node current = node(p, k); //startar nod med random kord
 
-    stack.push(current); // pushar första noden till stacken
+    stack.push(current); // pushar fÃ¶rsta noden till stacken
     myVec[current.x][current.y].IsVisited = true;
     myVec[current.x][current.y].cell = ' ';
 
 
     while (!stack.empty())
     {
-        current = stack.top(); //använder det elemntet som finns längst upp
+        current = stack.top(); //anvÃ¤nder det elemntet som finns lÃ¤ngst upp
         stack.pop(); //poppar den (tabort)
 
-        neighbour = possible_neighbour(current.x, current.y); //tar in alla möjliga grannar till en vektor
+        neighbour = possible_neighbour(current.x, current.y); //tar in alla mÃ¶jliga grannar till en vektor
         
         if (!neighbour.empty()){
 
             stack.push(current); 
 
-            node nextCurrent = randomgranne(neighbour); //tilldelar en random nod för att bli som en granne nod
+            node nextCurrent = randomgranne(neighbour); //tilldelar en random nod fÃ¶r att bli som en granne nod
 
             if (current.y != nextCurrent.y) {
-                if (nextCurrent.y > current.y) {//Höger åt
+                if (nextCurrent.y > current.y) {//HÃ¶ger Ã¥t
                     myVec[current.x][current.y + 1].cell = ' ';
                 }
-                if (nextCurrent.y < current.y) {//Vänster åt
+                if (nextCurrent.y < current.y) {//VÃ¤nster Ã¥t
                     myVec[current.x][current.y - 1].cell = ' ';
                 }
             }
             else{
-                if (nextCurrent.x < current.x) { //Uppåt
+                if (nextCurrent.x < current.x) { //UppÃ¥t
                     myVec[current.x - 1][current.y].cell = ' ';
                 }
-                if (nextCurrent.x > current.x) // Neråt 
+                if (nextCurrent.x > current.x) // NerÃ¥t 
                 {
                     myVec[current.x + 1][current.y].cell = ' ';
                 }
             }
             current.IsVisited = true;
-            myVec[nextCurrent.x][nextCurrent.y].cell = ' '; // efter IsVisited (check) lämna en 'space' ist för *
+            myVec[nextCurrent.x][nextCurrent.y].cell = ' '; // efter IsVisited (check) lÃ¤mna en 'space' ist fÃ¶r *
             myVec[nextCurrent.x][nextCurrent.y].IsVisited = true;
             stack.push(nextCurrent);
         }
