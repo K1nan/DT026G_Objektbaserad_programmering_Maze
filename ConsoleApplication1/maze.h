@@ -1,7 +1,3 @@
-/* Kinan Haj Rashid
-* 4 / oktober / 2021
-* Betyg: E
-*/
 #ifndef HEADER_H
 #define HEADER_H
 #include <vector>
@@ -12,12 +8,10 @@
 #include <sstream>
 
 class Maze {
-
 public:   
     Maze(int x, int y);
     Maze(); 
     void print();
-
 private:
     struct node {
         node(int x, int y);
