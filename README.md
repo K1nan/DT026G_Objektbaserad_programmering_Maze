@@ -55,22 +55,7 @@ The implementation file contains the logic for the `Maze` class methods.
 - **`Start()` and `End()`**: Randomly assign start and end points within the maze boundaries.
 - **`print()`**: Outputs the maze structure to the console.
 
-  
-#### A sample 11x11 maze output:
-XXXXXXXXXXX
-X   X     X
-X X X XXX X
-X X     X X
-XXX XXX X X
-X   X     X
-X XXXXX XXX
-X X     X X
-X XXX XXX X
-X       S X
-XXXXXXXXXEX
-XXXXXXXXXXX X X X X X X XXX X X X X X XXX XXX X X X X X X XXXXX XXX X X X X X XXX XXX X X S X XXXXXXXXXEX
-
-
+---
 
 In the maze:
 - **`S`** represents the starting point.
