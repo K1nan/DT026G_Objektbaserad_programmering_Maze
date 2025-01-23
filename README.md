@@ -68,4 +68,12 @@ X X     X X
 X XXX XXX X
 X       S X
 XXXXXXXXXEX
+XXXXXXXXXXX X X X X X X XXX X X X X X XXX XXX X X X X X X XXXXX XXX X X X X X XXX XXX X X S X XXXXXXXXXEX
 
+
+
+In the maze:
+- **`S`** represents the starting point.
+- **`E`** represents the ending point.
+- **`X`** represents walls.
+- Empty spaces represent the maze's traversable path.
